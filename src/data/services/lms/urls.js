@@ -18,7 +18,10 @@ export const useBaseUrl = () => {
 
 export const useViewUrl = () => {
   const { xblockId, courseId } = useParams();
-  return ({ view }) => `${getConfig().BASE_URL}/${stepRoutes[view]}/${courseId}/${xblockId}`;
+  // return ({ view }) => `${getConfig().BASE_URL}/${stepRoutes[view]}/${courseId}/${xblockId}`;
+  var baseUrl = getConfig().BASE_URL.startsWith('https://') ? etConfig().BASE_URL : `https://${getConfig().BASE_URL}/ora`;
+
+  return ({ view }) => `${baseUrl}/${stepRoutes[view]}/${courseId}/${xblockId}`;
 };
 
 export const usePageDataUrl = (hasSubmitted) => {
